@@ -1,7 +1,3 @@
-import util.Memoizer;
-
-import javax.sound.midi.SysexMessage;
-
 public class P2_EvenFiboNumbers {
     public static void main(String[] args) {
         int[] memos = new int[5000000];
