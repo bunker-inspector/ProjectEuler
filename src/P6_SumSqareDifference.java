@@ -9,7 +9,7 @@ public class P6_SumSqareDifference {
                 // If i = j, that is a sum of squares term, skip
                 if (i != j) {
                     //For each pair i,j, square of sums will include i * j and j * i
-                    // Double it and only consider of of pair
+                    // Double it and only consider one of pair
                     result += (2 * i * j);
                 }
             }
