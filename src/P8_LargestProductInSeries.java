@@ -9,7 +9,11 @@ public class P8_LargestProductInSeries {
     private static final long N = 13L;
 
     public static void main(String[] args) throws IOException  {
-        var queue = new LinkedBlockingQueue<BigInteger>();
+        var digits = new FixedSizeSummaryQueue<>(new BigInteger("1"),
+                (a, b) -> a.multiply(b),
+                (a, b) -> a.divide(b),
+                N
+        );
 
         var nums = Resource.stream("P8_1000-digit-number.txt")
                 .lines()
@@ -22,19 +26,16 @@ public class P8_LargestProductInSeries {
         var max = new BigInteger("0");
 
         for (int i = 0; i < nums.length; i++) {
-            if (queue.size() >= N) queue.remove();
+            if (nums[i] == 0) {
+                // 0 makes it impossible for max until it is flushed completely. Skip until 0 is gone
+                i += (3 * N) + 1;
+                digits.flush(new BigInteger("1"));
+            } else {
+                digits.push(new BigInteger(nums[i] + ""));
 
-            queue.add(new BigInteger("" + nums[i]));
-
-            var product = new BigInteger("1");
-
-            for (BigInteger b: queue) {
-                product = product.multiply(b);
+                if (digits.getSummary().compareTo(max) > 0) max = digits.getSummary();
             }
-
-            if (product.compareTo(max) > 0) max = product;
         }
-
 
         System.out.println(max);
     }
