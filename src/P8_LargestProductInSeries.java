@@ -3,7 +3,6 @@ import util.Resource;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class P8_LargestProductInSeries {
     private static final long N = 13L;
