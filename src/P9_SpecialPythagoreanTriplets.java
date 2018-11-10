@@ -1,12 +1,13 @@
 import java.util.stream.IntStream;
 
 public class P9_SpecialPythagoreanTriplets {
-    private static final int SUM_TARGET = 1000;
+    private static final int SUM_TARGET = 997;
 
     public static void main(String[] args) {
         final var CHECK_MAX = 1000;
 
-        final var product = IntStream.rangeClosed(0, CHECK_MAX)
+        final var product = IntStream
+                .rangeClosed(0, CHECK_MAX)
                 .map(a -> {
                     final var candidates = IntStream.range(a, CHECK_MAX)
                             .map(b -> {
@@ -21,7 +22,7 @@ public class P9_SpecialPythagoreanTriplets {
                             ? candidates.getAsInt()
                             : -1;
                 })
-                .filter(x -> x > 0)
+                .dropWhile(x -> x <= 0)
                 .findFirst();
 
         System.out.println(product.isPresent() ? product.getAsInt() : "You fucked up");
