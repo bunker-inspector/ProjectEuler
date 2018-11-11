@@ -2,6 +2,7 @@ package util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class PrimeSieve {
     private ArrayList<Integer> primes = new ArrayList<>();
@@ -42,5 +43,9 @@ public class PrimeSieve {
         }
 
         return primes.get(nThPrime - 1);
+    }
+
+    public Stream<Integer> stream() {
+        return primes.stream();
     }
 }
