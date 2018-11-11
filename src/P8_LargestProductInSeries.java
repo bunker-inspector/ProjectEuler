@@ -27,7 +27,6 @@ public class P8_LargestProductInSeries {
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) {
                 // 0 makes it impossible for max until it is flushed completely. Skip until 0 is gone
-                i += (3 * N) + 1;
                 digits.flush(new BigInteger("1"));
             } else {
                 digits.push(new BigInteger(nums[i] + ""));
